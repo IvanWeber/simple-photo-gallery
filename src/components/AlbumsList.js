@@ -14,7 +14,7 @@ export const AlbumsList = ({userId}) => {
       })
   })
 
-  return  <ul className="users-page__albums-list albums-list">
+  return  <ul className="user-page__albums-list albums-list">
             {albums.map((album, index) => {
               return (
                 <li key={index} className="albums-list__item">
