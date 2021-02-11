@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import {Link} from 'react-router-dom'
 
-export const Users = () => {
+export const UsersPage = () => {
   let [users, setUsers] = React.useState([])
 
   useEffect(() => {

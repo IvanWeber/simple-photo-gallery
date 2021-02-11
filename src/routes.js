@@ -1,17 +1,17 @@
 import React from 'react'
 import {Switch, Route, Redirect} from 'react-router-dom'
-import {Users} from './pages/Users'
-import {User} from './pages/User'
+import {UsersPage} from './pages/UsersPage'
+import {UserPage} from './pages/UserPage'
 
 
 export const useRoutes = () => {
     return (
       <Switch>
         <Route path="/" exact>
-          <Users />
+          <UsersPage />
         </Route>
         <Route path="/user/:id">
-          <User />
+          <UserPage />
         </Route>
         <Redirect to="/" />
       </Switch>

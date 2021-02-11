@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import {useParams} from 'react-router-dom'
 import {AlbumsList} from '../components/AlbumsList'
 
-export const User = () => {
+export const UserPage = () => {
   const userId = useParams().id
   let [user, setUser] = React.useState([])
 
