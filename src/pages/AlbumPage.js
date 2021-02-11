@@ -7,7 +7,7 @@ export const AlbumPage = () => {
   let [album, setAlbum] = React.useState([])
 
   useEffect(() => {
-    fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${albumId}`)
+    fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${albumId}&_limit=5`)
       .then((response) => response.json())
       .then((photos) => {
         {
