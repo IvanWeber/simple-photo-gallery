@@ -6,7 +6,7 @@ export const AlbumPage = () => {
   const albumId = useParams().id
   let [photos, setPhotos] = React.useState([])
   let [album, setAlbum] = React.useState([])
-  let [bigPic, setBigPic] = React.useState('')
+  let [photo, setPhoto] = React.useState('')
   let [isOpen, setIsOpen] = React.useState(false)
 
   useEffect(() => {
@@ -35,15 +35,45 @@ export const AlbumPage = () => {
     try {
       const response = await fetch(`https://jsonplaceholder.typicode.com/photos?id=${photoId}`);
       const result = await response.json();
-      setBigPic(result)
+      setPhoto(result)
       setIsOpen(true)
     } catch (e) {}
   }
 
+  const clickLeftHandler = async (photos, photo) => {
+    try {
+      if (photo[0].id === 1) {
+        const response = await fetch(`https://jsonplaceholder.typicode.com/photos?id=${photos.length}`);
+        const result = await response.json();
+        setPhoto(result)
+      } else {
+        const response = await fetch(`https://jsonplaceholder.typicode.com/photos?id=${photo[0].id - 1}`);
+        const result = await response.json();
+        setPhoto(result)
+      }
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  const clickRightHandler = async (photos, photo) => {
+    try {
+      if (photo[0].id === photos.length) {
+        const response = await fetch(`https://jsonplaceholder.typicode.com/photos?id=${photos[0].id}`);
+        const result = await response.json();
+        setPhoto(result)
+      } else {
+        const response = await fetch(`https://jsonplaceholder.typicode.com/photos?id=${photo[0].id + 1}`);
+        const result = await response.json();
+        setPhoto(result)
+      }
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   useEffect(() => {
   })
-
-  // console.log(user[0])
 
   return  <div className="photos-page">
             <h1>{album[0] && album[0].title}</h1>
@@ -56,7 +86,7 @@ export const AlbumPage = () => {
                 )
               })}
             </ul>
-              {isOpen && <div className="modal"><BigPic bigPic={bigPic}/><button onClick={() => setIsOpen(false)}>Close modal</button></div>}
+              {isOpen && <div className="modal"><BigPic photo={photo}/><button onClick={() => setIsOpen(false)}>Close modal</button><button onClick={() => clickLeftHandler(photos, photo)}>Left</button><button onClick={() => clickRightHandler(photos, photo)}>Right</button></div>}
           </div>
 }
 
