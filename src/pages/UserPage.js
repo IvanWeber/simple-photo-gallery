@@ -7,13 +7,15 @@ export const UserPage = () => {
   let [user, setUser] = React.useState([])
 
   useEffect(() => {
+    let cleanupFunction = false;
     fetch(`https://jsonplaceholder.typicode.com/users?id=${userId}`)
       .then((response) => response.json())
       .then((user) => {
         {
-          setUser(user)
+          if (!cleanupFunction) setUser(user)
         }
       })
+    return () => cleanupFunction = true
   })
 
   // console.log(user[0])

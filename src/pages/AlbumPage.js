@@ -7,23 +7,28 @@ export const AlbumPage = () => {
   let [album, setAlbum] = React.useState([])
 
   useEffect(() => {
+    let cleanupFunction = false;
+
     fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${albumId}&_limit=5`)
       .then((response) => response.json())
       .then((photos) => {
         {
-          setPhotos(photos)
+          if (!cleanupFunction) setPhotos(photos)
         }
       })
-  })
 
-  useEffect(() => {
     fetch(`https://jsonplaceholder.typicode.com/albums?id=${albumId}`)
       .then((response) => response.json())
       .then((album) => {
         {
-          setAlbum(album)
+          if (!cleanupFunction) setAlbum(album)
         }
       })
+
+    return () => cleanupFunction = true
+  })
+
+  useEffect(() => {
   })
 
   // console.log(user[0])

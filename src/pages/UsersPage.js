@@ -5,13 +5,15 @@ export const UsersPage = () => {
   let [users, setUsers] = React.useState([])
 
   useEffect(() => {
+    let cleanupFunction = false;
     fetch('https://jsonplaceholder.typicode.com/users?_limit=5')
       .then((response) => response.json())
       .then((users) => {
         {
-          setUsers(users)
+          if (!cleanupFunction) setUsers(users)
         }
       })
+    return () => cleanupFunction = true
   })
 
   return  <div className="users-page">
