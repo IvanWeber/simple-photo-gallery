@@ -8,15 +8,29 @@ export const AlbumPage = () => {
   let [album, setAlbum] = React.useState([])
   let [photo, setPhoto] = React.useState('')
   let [isOpen, setIsOpen] = React.useState(false)
+  let [limit, setLimit] = React.useState(5)
+  let [isShowMoreHidden, setIsShowMoreHidden] = React.useState(false)
+  let [photosLength, setPhotosLength] = React.useState(0)
 
   useEffect(() => {
     let cleanupFunction = false;
 
-    fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${albumId}&_limit=5`)
+    fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${albumId}`)
+      .then((response) => response.json())
+      .then((photos) => {
+        {
+          if (!cleanupFunction) setPhotosLength(photos.length)
+        }
+      })
+
+    fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${albumId}&_limit=${limit}`)
       .then((response) => response.json())
       .then((photos) => {
         {
           if (!cleanupFunction) setPhotos(photos)
+          if (!cleanupFunction && limit >= photosLength) {
+            setIsShowMoreHidden(true)
+          } 
         }
       })
 
@@ -72,6 +86,10 @@ export const AlbumPage = () => {
     }
   }
 
+  const clickShowMoreHandler = async () => {
+      setLimit(limit + 5)
+  }
+
   useEffect(() => {
   })
 
@@ -87,6 +105,7 @@ export const AlbumPage = () => {
               })}
             </ul>
               {isOpen && <div className="modal"><BigPic photo={photo}/><button onClick={() => setIsOpen(false)}>Close modal</button><button onClick={() => clickLeftHandler(photos, photo)}>Left</button><button onClick={() => clickRightHandler(photos, photo)}>Right</button></div>}
+              <button onClick={() => clickShowMoreHandler(photos, photo)} className={isShowMoreHidden ? 'hidden' : ''}>Загрузить ещё</button>
           </div>
 }
 

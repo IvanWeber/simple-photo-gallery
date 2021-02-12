@@ -12,6 +12,10 @@ code {
     monospace;
 }
 
+.hidden {
+  display: none;
+}
+
 .container {
   padding: 100px;
 }
