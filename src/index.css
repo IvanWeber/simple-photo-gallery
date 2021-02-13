@@ -25,6 +25,11 @@ h1, h2, h3 {
   margin: 0;
 }
 
+a {
+  color: black;
+  text-decoration: none;
+}
+
 ul {
   list-style-type: none;
   margin: 0;
@@ -108,7 +113,7 @@ ul {
   flex-direction: column;
 }
 
-.modal {
+/* .modal {
   position: fixed;
   top: 0;
   right: 0;
@@ -118,12 +123,80 @@ ul {
   display: flex;
   justify-content: center;
   padding-top: 5rem;
+} */
+
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, .5);
+  display: flex;
+  justify-content: center;
+  height: 100%;
 }
 
 .modal-body {
-  padding: 2rem;
-  width: 400px;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding: 5px;
+  width: 900px;
   background-repeat: 5px;
   background: #fff;
-  height: 200px;
+  min-height: 200px;
+  max-height: 800px;
 }
+
+.left-button, .right-button {
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 100px;
+  height: 100px;
+  max-height: 800px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.left-button:hover, .right-button:hover {
+  background-color: rgb(163, 163, 163);
+}
+
+.left-button:before {
+  background-image: url('./img/left-arrow.png');
+  background-size: 20px 20px;
+  display: inline-block;
+  width: 20px; 
+  height: 20px;
+  content:"";
+}
+
+.right-button:before {
+  background-image: url('./img/right-arrow.png');
+  background-size: 20px 20px;
+  display: inline-block;
+  width: 20px; 
+  height: 20px;
+  content:"";
+}
+
+.close-button{
+  margin-top: auto;
+  margin-bottom: auto;
+  min-width: 100px;
+  min-height: 100px;
+  max-height: 800px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  background-color: rgb(163, 163, 163);
+}
+
+.close-button:before {
+  content: url(./img/close-cross.png);
+}
+

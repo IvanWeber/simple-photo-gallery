@@ -95,7 +95,7 @@ export const AlbumPage = () => {
   })
 
   return  <div className="photos-page">
-            <h1>{album[0] && album[0].title}</h1>
+            <h1>Альбом {album[0] && album[0].title}</h1>
             <ul className="photos-page__photos-list photos-list">
               {photos.map((photo, index) => {
                 return (
@@ -106,7 +106,12 @@ export const AlbumPage = () => {
                 )
               })}
             </ul>
-              {isOpen && <div className="modal"><BigPic photo={photo}/><button onClick={() => setIsOpen(false)}>Close modal</button><button onClick={() => clickLeftHandler(photos, photo)}>Left</button><button onClick={() => clickRightHandler(photos, photo)}>Right</button></div>}
+              {isOpen &&  <div className="modal">
+                            <button onClick={() => clickLeftHandler(photos, photo)} className="left-button"></button>
+                            <BigPic photo={photo}/>
+                            <button onClick={() => clickRightHandler(photos, photo)} className="right-button"></button>
+                            <button onClick={() => setIsOpen(false)} className="close-button"></button>
+                          </div>}
               <button onClick={() => clickShowMoreHandler(photos, photo)} className={isShowMoreHidden ? 'hidden show-more-button' : 'show-more-button'}>Загрузить ещё</button>
               <Link to={`/user/${album[0] && album[0].userId}`} className="back-link">Вернуться на страницу списка альбомов пользователя</Link>
           </div>

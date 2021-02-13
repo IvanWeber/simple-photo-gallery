@@ -22,7 +22,7 @@ export const UserPage = () => {
   // console.log(user[0])
 
   return  <div className="user-page">
-            <h1>{user[0] && user[0].name}</h1>
+            <h1>Альбомы пользователя {user[0] && user[0].name}</h1>
             <AlbumsList userId={userId} />
             <Link to={`/`} className="back-link">Вернуться на главную страницу</Link>
           </div>
