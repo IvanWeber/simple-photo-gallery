@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import {useParams} from 'react-router-dom'
 import {BigPic} from '../components/BigPic'
+import {Link} from 'react-router-dom'
 
 export const AlbumPage = () => {
   const albumId = useParams().id
@@ -106,6 +107,7 @@ export const AlbumPage = () => {
             </ul>
               {isOpen && <div className="modal"><BigPic photo={photo}/><button onClick={() => setIsOpen(false)}>Close modal</button><button onClick={() => clickLeftHandler(photos, photo)}>Left</button><button onClick={() => clickRightHandler(photos, photo)}>Right</button></div>}
               <button onClick={() => clickShowMoreHandler(photos, photo)} className={isShowMoreHidden ? 'hidden' : ''}>Загрузить ещё</button>
+              <Link to={`/user/${album[0] && album[0].userId}`}>Вернуться на страницу списка альбомов пользователя</Link>
           </div>
 }
 

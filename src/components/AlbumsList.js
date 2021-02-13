@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import {useParams, Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 export const AlbumsList = ({userId}) => {
   let [albums, setAlbums] = React.useState([])

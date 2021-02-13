@@ -20,6 +20,11 @@ code {
   padding: 100px;
 }
 
+.photos-page {
+  display: flex;
+  flex-direction: column;
+}
+
 .modal {
   position: fixed;
   top: 0;

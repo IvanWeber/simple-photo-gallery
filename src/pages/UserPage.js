@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import {useParams} from 'react-router-dom'
 import {AlbumsList} from '../components/AlbumsList'
+import {Link} from 'react-router-dom'
 
 export const UserPage = () => {
   const userId = useParams().id
@@ -23,5 +24,6 @@ export const UserPage = () => {
   return  <div className="user-page">
             <h1>{user[0] && user[0].name}</h1>
             <AlbumsList userId={userId} />
+            <Link to={`/`}>Вернуться на главную страницу</Link>
           </div>
 }
