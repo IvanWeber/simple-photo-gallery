@@ -22,7 +22,8 @@ export const AlbumsList = ({userId}) => {
             {albums.map((album, index) => {
               return (
                 <li key={index} className="albums-list__item">
-                  <Link to={`/albums/${album.id}`}>{album.title}</Link>
+                  <Link to={`/albums/${album.id}`} className="users-page__album-link">{album.title}</Link>
+                  <div className="separator"></div>
                 </li>
               )
             })}

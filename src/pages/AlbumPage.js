@@ -99,15 +99,16 @@ export const AlbumPage = () => {
             <ul className="photos-page__photos-list photos-list">
               {photos.map((photo, index) => {
                 return (
-                  <li key={index} className="photos-list__item" onClick={() => clickPicHandler(photo.id)}>
-                    <a href='#'><img src={photo.thumbnailUrl} alt={photo.title}/>{photo.title}</a>
+                  <li key={index} className="photos-list__item" onClick={() => clickPicHandler(photo.id)} className="photos-page__photo-link">
+                    <a href='#'><img src={photo.thumbnailUrl} alt={photo.title}/><p>{photo.title}</p></a>
+                    <div className="separator"></div>
                   </li>
                 )
               })}
             </ul>
               {isOpen && <div className="modal"><BigPic photo={photo}/><button onClick={() => setIsOpen(false)}>Close modal</button><button onClick={() => clickLeftHandler(photos, photo)}>Left</button><button onClick={() => clickRightHandler(photos, photo)}>Right</button></div>}
-              <button onClick={() => clickShowMoreHandler(photos, photo)} className={isShowMoreHidden ? 'hidden' : ''}>Загрузить ещё</button>
-              <Link to={`/user/${album[0] && album[0].userId}`}>Вернуться на страницу списка альбомов пользователя</Link>
+              <button onClick={() => clickShowMoreHandler(photos, photo)} className={isShowMoreHidden ? 'hidden show-more-button' : 'show-more-button'}>Загрузить ещё</button>
+              <Link to={`/user/${album[0] && album[0].userId}`} className="back-link">Вернуться на страницу списка альбомов пользователя</Link>
           </div>
 }
 

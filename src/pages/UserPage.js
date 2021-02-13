@@ -24,6 +24,6 @@ export const UserPage = () => {
   return  <div className="user-page">
             <h1>{user[0] && user[0].name}</h1>
             <AlbumsList userId={userId} />
-            <Link to={`/`}>Вернуться на главную страницу</Link>
+            <Link to={`/`} className="back-link">Вернуться на главную страницу</Link>
           </div>
 }
