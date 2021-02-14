@@ -135,17 +135,42 @@ ul {
   display: flex;
   justify-content: center;
   height: 100%;
+  flex-direction: column;
+}
+
+.modal-content-wrapper {
+  height: 90%;
+}
+
+.modal__close-button-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  height: 10%;
+}
+
+.modal__big-pic-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 90%;
 }
 
 .modal-body {
   margin-top: auto;
   margin-bottom: auto;
   padding: 5px;
-  width: 900px;
+  width: 80%;
   background-repeat: 5px;
   background: #fff;
   min-height: 200px;
   max-height: 800px;
+  height: 80%;
+}
+
+.modal-body__img {
+  max-width: 90%;
+  max-height: 90%;
 }
 
 .left-button, .right-button {
@@ -182,14 +207,12 @@ ul {
 }
 
 .close-button{
-  margin-top: auto;
-  margin-bottom: auto;
-  min-width: 100px;
-  min-height: 100px;
-  max-height: 800px;
+  width: 100px;
+  height: 100px;
   border: none;
   background-color: transparent;
   cursor: pointer;
+  align-items: flex-end;
 }
 
 .close-button:hover {
@@ -198,5 +221,46 @@ ul {
 
 .close-button:before {
   content: url(./img/close-cross.png);
+}
+
+@media only screen and (max-width: 650px) {
+
+  .close-button {
+    width: 50px;
+    align-items: right;
+  }
+
+  .modal-body__header {
+    margin:0;
+    font-size: 20px;
+  }
+
+
+}
+
+@media only screen and (max-height: 700px) {
+
+  .close-button {
+    width: 50px;
+    align-items: right;
+  }
+
+  .modal-body__header {
+    margin:0;
+    font-size: 20px;
+  }
+
+}
+
+@media only screen and (max-height: 400px) {
+
+  .modal__close-button-section {
+    height: 30%;
+  }
+  
+  .modal__big-pic-section {
+    height: 70%;
+  }
+
 }
 

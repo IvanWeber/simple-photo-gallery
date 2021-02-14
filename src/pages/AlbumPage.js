@@ -107,10 +107,21 @@ export const AlbumPage = () => {
               })}
             </ul>
               {isOpen &&  <div className="modal">
-                            <button onClick={() => clickLeftHandler(photos, photo)} className="left-button"></button>
-                            <BigPic photo={photo}/>
-                            <button onClick={() => clickRightHandler(photos, photo)} className="right-button"></button>
-                            <button onClick={() => setIsOpen(false)} className="close-button"></button>
+
+                            <div className="modal-content-wrapper">
+
+                              <div className="modal__close-button-section">
+                                <button onClick={() => setIsOpen(false)} className="close-button"></button>
+                              </div>
+                              <div className="modal__big-pic-section">
+                                <button onClick={() => clickLeftHandler(photos, photo)} className="left-button"></button>
+                                <BigPic photo={photo}/>
+                                <button onClick={() => clickRightHandler(photos, photo)} className="right-button"></button>
+                              </div>
+
+                            </div>
+                            
+                            
                           </div>}
               <button onClick={() => clickShowMoreHandler(photos, photo)} className={isShowMoreHidden ? 'hidden show-more-button' : 'show-more-button'}>Загрузить ещё</button>
               <Link to={`/user/${album[0] && album[0].userId}`} className="back-link">Вернуться на страницу списка альбомов пользователя</Link>
