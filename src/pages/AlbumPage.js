@@ -46,24 +46,25 @@ export const AlbumPage = () => {
     return () => cleanupFunction = true
   })
 
-  const clickPicHandler = async (photoId) => {
+  const clickPicHandler = async (photo, index) => {
     try {
-      const response = await fetch(`https://jsonplaceholder.typicode.com/photos?id=${photoId}`);
-      const result = await response.json();
-      setPhoto(result)
+      photo.index = index
+      setPhoto([photo])
       setIsOpen(true)
     } catch (e) {}
   }
 
   const clickLeftHandler = async (photos, photo) => {
     try {
-      if (photo[0].id === 1) {
-        const response = await fetch(`https://jsonplaceholder.typicode.com/photos?id=${photos.length}`);
-        const result = await response.json();
+      if (parseInt(photo[0].index, 10) === 1) {
+        const response = await fetch(`https://jsonplaceholder.typicode.com/photos?id=${photos[photos.length - 1].id}`);
+        const result = await response.json()
+        result[0].index = photos.length
         setPhoto(result)
       } else {
-        const response = await fetch(`https://jsonplaceholder.typicode.com/photos?id=${photo[0].id - 1}`);
-        const result = await response.json();
+        const response = await fetch(`https://jsonplaceholder.typicode.com/photos?id=${photos[parseInt(photo[0].index, 10) - 2].id}`);
+        const result = await response.json()
+        result[0].index = photo[0].index - 1
         setPhoto(result)
       }
     } catch (e) {
@@ -73,13 +74,15 @@ export const AlbumPage = () => {
 
   const clickRightHandler = async (photos, photo) => {
     try {
-      if (photo[0].id === photos.length) {
+      if (parseInt(photo[0].index, 10) === (photos.length)) {
         const response = await fetch(`https://jsonplaceholder.typicode.com/photos?id=${photos[0].id}`);
         const result = await response.json();
+        result[0].index = 1
         setPhoto(result)
       } else {
-        const response = await fetch(`https://jsonplaceholder.typicode.com/photos?id=${photo[0].id + 1}`);
+        const response = await fetch(`https://jsonplaceholder.typicode.com/photos?id=${photos[parseInt(photo[0].index, 10)].id}`);
         const result = await response.json();
+        result[0].index = photo[0].index + 1
         setPhoto(result)
       }
     } catch (e) {
@@ -99,7 +102,7 @@ export const AlbumPage = () => {
             <ul className="photos-page__photos-list photos-list">
               {photos.map((photo, index) => {
                 return (
-                  <li key={index} className="photos-list__item" onClick={() => clickPicHandler(photo.id)} className="photos-page__photo-link">
+                  <li key={index} className="photos-list__item" onClick={() => clickPicHandler(photo, index + 1)} className="photos-page__photo-link">
                     <a href='#'><img src={photo.thumbnailUrl} alt={photo.title}/><p>{photo.title}</p></a>
                     <div className="separator"></div>
                   </li>
