@@ -29,9 +29,13 @@ export const AlbumPage = () => {
       .then((photos) => {
         {
           if (!cleanupFunction) setPhotos(photos)
-          if (!cleanupFunction && limit >= photosLength) {
-            setIsShowMoreHidden(true)
+
+          if (!cleanupFunction && (photosLength !== 0)) {
+            if (limit >= photosLength) {
+              setIsShowMoreHidden(true)
+            }
           } 
+
         }
       })
 
