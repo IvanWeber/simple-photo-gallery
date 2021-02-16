@@ -6,7 +6,7 @@ export const UsersPage = () => {
 
   useEffect(() => {
     let cleanupFunction = false;
-    fetch('https://jsonplaceholder.typicode.com/users?_limit=5')
+    fetch('https://jsonplaceholder.typicode.com/users')
       .then((response) => response.json())
       .then((users) => {
         {
