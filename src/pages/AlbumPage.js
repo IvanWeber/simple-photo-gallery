@@ -134,5 +134,3 @@ export const AlbumPage = () => {
               <Link to={`/user/${album[0] && album[0].userId}`} className="back-link">Вернуться на страницу списка альбомов пользователя</Link>
           </div>
 }
-
-//onClick={(photo.id) => clickPicHandler(photo.id)}

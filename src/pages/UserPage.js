@@ -19,8 +19,6 @@ export const UserPage = () => {
     return () => cleanupFunction = true
   })
 
-  // console.log(user[0])
-
   return  <div className="user-page">
             <h1>Альбомы пользователя {user[0] && user[0].name}</h1>
             <AlbumsList userId={userId} />
